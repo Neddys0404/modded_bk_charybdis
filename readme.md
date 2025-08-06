@@ -49,4 +49,4 @@ Enter the bootloader mode with 1 way ONLY:
 * Switch socket used for this keyboard: Kailh MX Switch Socket, just search shopee.
 * Some good soldering skills and good flux are required for both direct solder or switch socket.
 
-## Any more information just dm me at @_dr_tay instagram. Dont email me.
+*Any more information just dm me at @_dr_tay instagram. Dont email me.*
