@@ -165,9 +165,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           case OPEN_WS:
                if (record->event.pressed) {
                     // when keycode QMKURL is pressed
-                    SEND_STRING_DELAY(SS_LGUI("r"), 200);
-                    SEND_STRING("WhatsApp"); 
-                    SEND_STRING(SS_TAP(X_ENTER)); 
+                    SEND_STRING(SS_LGUI("4")); //this requires whatsapp to be at first icon in the task bar 
                } else {
                     // when keycode QMKURL is released
                }
