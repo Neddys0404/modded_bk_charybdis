@@ -33,6 +33,7 @@ Enter the bootloader mode with 1 way ONLY:
 * 8*M5 for Tenting (Length up to you, roughly measure it with your preference tenting angle)
 * 2*M3 10mm Countersunk for mounting sensor cover
 * 3*M3 10mm Button for mounting trackball's ball bearing
+* 2 self-tapping screws or M3 bolts to mount sensor pcb in place
 
 ## Trackball Bearings
 
