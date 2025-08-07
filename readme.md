@@ -1,6 +1,6 @@
 # modded_bk_charybdis
 
-* Keyboard Maintainer: [Jun Ren](https://github.com/Neddys0404)
+* Keyboard Maintainer: [ned](https://github.com/Neddys0404)
 * MCU Supported: RP2040 Pro Micro
 * MCU Availability: Aliexpress for the best price, but shopee (asia e-commerce platform) have some too
 * Pointing Device Sensor: PMW3360
