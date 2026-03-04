@@ -32,46 +32,65 @@ enum custom_keys {
      SCREENSNIP,
 };
 
-bool set_scrolling = false;
 
-// Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 12.0
-#define SCROLL_DIVISOR_V 12.0
+bool encoder_update_user(uint8_t index, bool clockwise) {
+     
+     if (index == 0) {
+          switch (get_highest_layer(layer_state)) {
+               case LAYER_BASE:
+                    if (clockwise) {
+                         tap_code(KC_VOLU);
+                    } else {
+                         tap_code(KC_VOLD);
+                    }
+                    break;
+     
+               case LAYER_MAC_ONE:
+                    if (clockwise) {
+                         tap_code(KC_PGDN);
+                    } else {
+                         tap_code(KC_PGUP);
+                    }
+                    break;
+     
+               case LAYER_MAC_TWO:
+                    if (clockwise) {
+                         tap_code(KC_RIGHT);
+                    } else {
+                         tap_code(KC_LEFT);
+                    }
+                    break;
+          }
+     }
+     else if (index == 1) {
+          switch (get_highest_layer(layer_state)) {
+               case LAYER_BASE:
+                    if (clockwise) {
+                         tap_code(KC_VOLU);
+                    } else {
+                         tap_code(KC_VOLD);
+                    }
+                    break;
+     
+               case LAYER_MAC_ONE:
+                    if (clockwise) {
+                         tap_code(KC_PGDN);
+                    } else {
+                         tap_code(KC_PGUP);
+                    }
+                    break;
+     
+               case LAYER_MAC_TWO:
+                    if (clockwise) {
+                         tap_code(KC_RIGHT);
+                    } else {
+                         tap_code(KC_LEFT);
+                    }
+                    break;
+          }
+     }
 
-// Variables to store accumulated scroll values
-float scroll_accumulated_h = 0;
-float scroll_accumulated_v = 0;
-
-// Function to handle mouse reports and perform drag scrolling
-report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    // Check if drag scrolling is active
-    if (set_scrolling) {
-        // Calculate and accumulate scroll values based on mouse movement and divisors
-        scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
-        scroll_accumulated_v += (float)-mouse_report.y / SCROLL_DIVISOR_V;
-
-        // Assign integer parts of accumulated scroll values to the mouse report
-        mouse_report.h = (int8_t)scroll_accumulated_h;
-        mouse_report.v = (int8_t)scroll_accumulated_v;
-
-        // Update accumulated scroll values by subtracting the integer parts
-        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-
-        // Clear the X and Y values of the mouse report
-        mouse_report.x = 0;
-        mouse_report.y = 0;
-    }
-    return mouse_report;
-}
-
-// Function to handle layer changes and disable drag scrolling when not in AUTO_MOUSE_DEFAULT_LAYER
-layer_state_t layer_state_set_user(layer_state_t state) {
-    // Disable set_scrolling if the current layer is not the AUTO_MOUSE_DEFAULT_LAYER
-    if (get_highest_layer(state) != LAYER_MSE) {
-        set_scrolling = false;
-    }
-    return state;
+     return true;
 }
 
 #define QUOTE MO(LAYER_QUOTE)
