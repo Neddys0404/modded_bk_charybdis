@@ -1,6 +1,6 @@
 {
     "manufacturer": "Jun Ren",
-    "keyboard_name": "modded_bk_charybdis",
+    "keyboard_name": "Kah Yee's Keyboard",
     "maintainer": "Neddys0404",
     "development_board": "promicro_rp2040",
     "diode_direction": "ROW2COL",
@@ -89,9 +89,7 @@
     },
     "features": {
         "bootmagic": false,
-        "extrakey": false,
-        "mousekey": true,
-        "pointing_device": true
+        "extrakey": false
     },
     "matrix_pins": {
         "cols": ["GP21", "GP15", "GP6", "GP7", "GP8", "GP6"],
