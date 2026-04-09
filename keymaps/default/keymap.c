@@ -32,10 +32,9 @@ enum custom_keys {
      SCREENSNIP,
 };
 
-
 bool encoder_update_user(uint8_t index, bool clockwise) {
-     
-     if (index == 0) {
+     if (is_keyboard_left()) {
+          // Left encoder behavior
           switch (get_highest_layer(layer_state)) {
                case LAYER_BASE:
                     if (clockwise) {
@@ -44,52 +43,57 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                          tap_code(KC_VOLD);
                     }
                     break;
-     
-               case LAYER_MAC_ONE:
-                    if (clockwise) {
-                         tap_code(KC_PGDN);
-                    } else {
-                         tap_code(KC_PGUP);
-                    }
-                    break;
-     
-               case LAYER_MAC_TWO:
-                    if (clockwise) {
-                         tap_code(KC_RIGHT);
-                    } else {
-                         tap_code(KC_LEFT);
-                    }
-                    break;
-          }
-     }
-     else if (index == 1) {
-          switch (get_highest_layer(layer_state)) {
-               case LAYER_BASE:
-                    if (clockwise) {
-                         tap_code(KC_VOLU);
-                    } else {
-                         tap_code(KC_VOLD);
-                    }
-                    break;
-     
-               case LAYER_MAC_ONE:
-                    if (clockwise) {
-                         tap_code(KC_PGDN);
-                    } else {
-                         tap_code(KC_PGUP);
-                    }
-                    break;
-     
-               case LAYER_MAC_TWO:
-                    if (clockwise) {
-                         tap_code(KC_RIGHT);
-                    } else {
-                         tap_code(KC_LEFT);
-                    }
-                    break;
-          }
-     }
 
+               case LAYER_MAC_ONE:
+                    if (clockwise) {
+                         tap_code(KC_PGDN);
+                    } else {
+                         tap_code(KC_PGUP);
+                    }
+                    break;
+
+               case LAYER_MAC_TWO:
+                    if (clockwise) {
+                         tap_code(KC_RIGHT);
+                    } else {
+                         tap_code(KC_LEFT);
+                    }
+                    break;
+
+               default:
+                    break;
+          }
+     } else {
+          // Right encoder behavior
+          switch (get_highest_layer(layer_state)) {
+               case LAYER_BASE:
+                    if (clockwise) {
+                         tap_code(KC_VOLU);
+                    } else {
+                         tap_code(KC_VOLD);
+                    }
+                    break;
+
+               case LAYER_MAC_ONE:
+                    if (clockwise) {
+                         tap_code(KC_PGDN);
+                    } else {
+                         tap_code(KC_PGUP);
+                    }
+                    break;
+
+               case LAYER_MAC_TWO:
+                    if (clockwise) {
+                         tap_code(KC_RIGHT);
+                    } else {
+                         tap_code(KC_LEFT);
+                    }
+                    break;
+
+               default:
+                    break;
+          }
+     }
      return true;
 }
 
