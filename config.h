@@ -2,6 +2,11 @@
 
 #define DEBOUNCE 5
 
+/* Handedness. */
+#define SPLIT_HAND_PIN GP22
+#define	SPLIT_HAND_PIN_LOW_IS_LEFT
+#define SERIAL_USART_TX_PIN GP1
+
 /* Reset. (May not be needed) */
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_LED GP17
