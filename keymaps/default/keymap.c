@@ -6,9 +6,7 @@
 enum modded_charybdis_keymap_layers {
      LAYER_BASE = 0,
      LAYER_QUOTE,
-     LAYER_NUM,
-     LAYER_MACRO,
-     LAYER_MSE,
+     LAYER_NUM
 };
 
 enum custom_keys {
@@ -20,7 +18,6 @@ enum custom_keys {
      AUTO_FOR_C,
      AUTO_WHILE_C,
      AUTO_CASE_C,
-     DRAG_SCROLL,
      SWITCH_TAB,
      OPEN_YT,
      OPEN_WS,
@@ -32,70 +29,14 @@ enum custom_keys {
      SCREENSNIP,
 };
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
-     if (is_keyboard_left()) {
-          // Left encoder behavior
-          switch (get_highest_layer(layer_state)) {
-               case LAYER_BASE:
-                    if (clockwise) {
-                         tap_code(KC_VOLU);
-                    } else {
-                         tap_code(KC_VOLD);
-                    }
-                    break;
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [LAYER_BASE] = { ENCODER_CCW_CW(MS_WHLU, MS_WHLD),  ENCODER_CCW_CW(KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP) },
+    [LAYER_QUOTE] = { ENCODER_CCW_CW(KC_LEFT, KC_RIGHT),  ENCODER_CCW_CW(KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP) },
+    [LAYER_NUM] = { ENCODER_CCW_CW(KC_LEFT, KC_RIGHT),  ENCODER_CCW_CW(KC_AUDIO_VOL_DOWN, KC_AUDIO_VOL_UP) },
+};
+#endif
 
-               case LAYER_MAC_ONE:
-                    if (clockwise) {
-                         tap_code(KC_PGDN);
-                    } else {
-                         tap_code(KC_PGUP);
-                    }
-                    break;
-
-               case LAYER_MAC_TWO:
-                    if (clockwise) {
-                         tap_code(KC_RIGHT);
-                    } else {
-                         tap_code(KC_LEFT);
-                    }
-                    break;
-
-               default:
-                    break;
-          }
-     } else {
-          // Right encoder behavior
-          switch (get_highest_layer(layer_state)) {
-               case LAYER_BASE:
-                    if (clockwise) {
-                         tap_code(KC_VOLU);
-                    } else {
-                         tap_code(KC_VOLD);
-                    }
-                    break;
-
-               case LAYER_MAC_ONE:
-                    if (clockwise) {
-                         tap_code(KC_PGDN);
-                    } else {
-                         tap_code(KC_PGUP);
-                    }
-                    break;
-
-               case LAYER_MAC_TWO:
-                    if (clockwise) {
-                         tap_code(KC_RIGHT);
-                    } else {
-                         tap_code(KC_LEFT);
-                    }
-                    break;
-
-               default:
-                    break;
-          }
-     }
-     return true;
-}
 
 #define QUOTE MO(LAYER_QUOTE)
 #define NUM MO(LAYER_NUM)
@@ -106,7 +47,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #define GUI_SPC GUI_T(KC_SPC)
 #define NUM_ENT LT(LAYER_NUM,KC_ENT)
 #define QUOTE_BSPC  LT(LAYER_QUOTE,KC_BSPC)
-#define MSE_L LT(LAYER_MSE,KC_L)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
      switch (keycode) {
@@ -157,11 +97,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                } else {
                     // when keycode QMKURL is released
                }
-               break;
-
-          case DRAG_SCROLL:
-               // Toggle set_scrolling when DRAG_SCROLL key is pressed or released
-               set_scrolling = record->event.pressed;
                break;
 
           case SWITCH_TAB:
@@ -263,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭───────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────╮
           KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,     KC_BSPC,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
-          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    MSE_L,    KC_SCLN,  KC_ENT,
+          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_ENT,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
           KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M,    KC_COMM,  KC_DOT,  SFT_SLSH, KC_RSFT,
   // ╰───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────╯
@@ -275,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭───────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────╮
           KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,     KC_BSPC,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
-          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    MSE_L,    KC_SCLN,  KC_ENT,
+          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_ENT,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
           KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M,    KC_COMM,  KC_DOT,  SFT_SLSH, KC_RSFT,
   // ╰───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────╯
@@ -287,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭───────────────────────────────────────────────────────╮ ╭───────────────────────────────────────────────────────────╮
           KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,     KC_P,     KC_BSPC,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
-          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    MSE_L,    KC_SCLN,  KC_ENT,
+          KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_ENT,
   // ├───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────┤
           KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M,    KC_COMM,  KC_DOT,  SFT_SLSH, KC_RSFT,
   // ╰───────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────────╯

@@ -53,10 +53,10 @@
                 {"matrix": [6, 4], "x": 14, "y": 2},
                 {"matrix": [6, 5], "x": 15, "y": 2},
 
-                {"matrix": [3, 3], "x": 4, "y": 3},
-                {"matrix": [3, 4], "x": 5, "y": 3},
-                {"matrix": [3, 5], "x": 6, "y": 3},
-                {"matrix": [3, 6], "x": 7, "y": 3},
+                {"matrix": [3, 2], "x": 4, "y": 3},
+                {"matrix": [3, 3], "x": 5, "y": 3},
+                {"matrix": [3, 4], "x": 6, "y": 3},
+                {"matrix": [3, 5], "x": 7, "y": 3},
 
                 {"matrix": [7, 0], "x": 10, "y": 3},
                 {"matrix": [7, 1], "x": 11, "y": 3},
@@ -88,12 +88,11 @@
         }
     },
     "features": {
-        "bootmagic": false,
-        "extrakey": false
+        "bootmagic": false
     },
     "matrix_pins": {
         "cols": ["GP8", "GP7", "GP6", "GP5", "GP4", "GP3"],
-        "rows": ["GP9", "GP10", "GP11", "GP12"]
+        "rows": ["GP10", "GP11", "GP12", "GP13"]
     },
     "matrix_size": {
         "rows": 8,

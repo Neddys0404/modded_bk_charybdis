@@ -8,6 +8,9 @@
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
 
 // Encoder Pins and resolutions
-#define ENCODERS_PAD_A { { GP3 }, { GP29 } }
-#define ENCODERS_PAD_B { { GP4 }, { GP28 } }
+#define ENCODER_A_PINS { GP29 }
+#define ENCODER_B_PINS { GP28 }
+#define ENCODER_A_PINS_RIGHT { GP3 }
+#define ENCODER_B_PINS_RIGHT { GP4 }
+#define ENCODER_RESOLUTIONS_RIGHT 4
 #define ENCODER_RESOLUTION 4
