@@ -82,8 +82,8 @@
         },
         "matrix_pins": {
             "right": {
-                "cols": ["GP29", "GP28", "GP27", "GP26", "GP15", "GP14"],
-                "rows": ["GP13", "GP12", "GP11", "GP10"]
+                "cols": ["GP8", "GP7", "GP6", "GP5", "GP4", "GP3"],
+                "rows": ["GP9", "GP10", "GP11", "GP12"]
             }
         }
     },
@@ -91,8 +91,8 @@
         "bootmagic": false
     },
     "matrix_pins": {
-        "cols": ["GP8", "GP7", "GP6", "GP5", "GP4", "GP3"],
-        "rows": ["GP10", "GP11", "GP12", "GP13"]
+        "cols": ["GP29", "GP28", "GP27", "GP26", "GP15", "GP14"],
+        "rows": ["GP13", "GP12", "GP11", "GP10"]
     },
     "matrix_size": {
         "rows": 8,
